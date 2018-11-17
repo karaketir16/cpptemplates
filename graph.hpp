@@ -77,3 +77,31 @@ queue<int> Graph<T>::bfs_queue(int startNodeNumber)
     return q;
 }
 #endif // GRAPH_HPP_
+/*
+    //bfs example code
+    int n, t;
+    cin>>n>>t;
+    Graph<test> g(n);
+    //example input
+    //6 5
+    //1 5
+    //1 2
+    //2 4
+    //2 3
+    //5 6
+    
+    while(t--)
+    {
+        int x,y;
+        cin>>x>>y;
+        g.addEdge(x,y);
+    }
+
+    auto q=g.bfs_queue();
+    while(!q.empty())
+    {
+        cout<<q.front()<<endl;
+
+        q.pop();
+    }
+    */

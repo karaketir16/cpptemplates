@@ -19,22 +19,8 @@ struct test : public Node
 int main(int argc, char const *argv[])
 {
     
-    Graph<test> g(6);
-    int t=5;
-    while(t--)
-    {
-        int x,y;
-        cin>>x>>y;
-        g.addEdge(x,y);
-    }
 
-    auto q=g.bfs_queue();
-    while(!q.empty())
-    {
-        cout<<q.front()<<endl;
 
-        q.pop();
-    }
     return 0;
 }
 /*
@@ -57,7 +43,6 @@ int main(int argc, char const *argv[])
     {
         cout<<a<<" ";
     }
-    re
     
     return 0;
 }
