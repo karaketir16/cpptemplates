@@ -18,15 +18,16 @@ struct test : public Node
 };
 int main(int argc, char const *argv[])
 {
-    vector<Edge> e;
+    
+    Graph<test> g(6);
     int t=5;
     while(t--)
     {
         int x,y;
         cin>>x>>y;
-        e.pb(Edge{x,y,1});
+        g.addEdge(x,y);
     }
-    Graph<test> g(6, e);
+
     auto q=g.bfs_queue();
     while(!q.empty())
     {

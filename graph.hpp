@@ -17,20 +17,33 @@ class Node
     vector<pair<int, int>> adj;// edgeWeight, nodeNumber
     
 };
-template<class T>
+template<class T> //for using graph class T must be inherited from Node
 class Graph
 {
     public:
+        vector<Edge> edges;
         bool directed;
         vector<T> nodes;
-        Graph(int n, vector<Edge> edges, bool directed=0);
+        Graph(int n, bool directed=0);
         queue<int> bfs_queue(int startNodeNumber=1);
+        void addEdge(int nodeNumber1, int nodeNumber2, int weight=1);
 };
 template<class T>
-Graph<T>::Graph(int n, vector<Edge> edges, bool directed)
+void Graph<T>::addEdge(int nodeNumber1, int nodeNumber2, int edgeWeight)
+{
+    edges.push_back(Edge{nodeNumber1, nodeNumber2, edgeWeight});
+    nodes[nodeNumber1].adj.
+    push_back(make_pair(edgeWeight, nodeNumber2));
+    if(!directed)
+        nodes[nodeNumber2].adj.
+        push_back(make_pair(edgeWeight, nodeNumber1));
+}
+template<class T>
+Graph<T>::Graph(int n, bool directed)
 {
     this->directed=directed;
     nodes = vector<T> (n+1);
+    /*
     for(auto edge: edges)
     {
         nodes[edge.nodeNumber1].adj.
@@ -39,6 +52,7 @@ Graph<T>::Graph(int n, vector<Edge> edges, bool directed)
             nodes[edge.nodeNumber2].adj.
             push_back(make_pair(edge.edgeWeight, edge.nodeNumber1));
     }
+    */
 }
 template<class T> 
 queue<int> Graph<T>::bfs_queue(int startNodeNumber)
