@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include "ahocorasick.hpp"
+#include "graph.hpp"
 using namespace std;
 #define pb push_back
 template <class T>
@@ -9,25 +10,30 @@ struct Compare {
 
 template <class T> class priority_queue_less: public priority_queue<T, vector<T>, Compare<T>>{};
 
+
+
+struct test : public Node
+{
+    int value;
+};
 int main(int argc, char const *argv[])
 {
-
-    string text;//text that patterns search in
-    cin>>text;
-    int q;
-    cin>>q;
-    vector<string> queries;// patterns
-    for(int i=0;i<q;i++)
+    vector<Edge> e;
+    int t=5;
+    while(t--)
     {
-        string s;
-        cin>>s;
-        queries.pb(s);
+        int x,y;
+        cin>>x>>y;
+        e.pb(Edge{x,y,1});
     }
-    AhoCorasick aho(text, queries);
-    int *rslt = aho.get_result();
-    for(int i=0; i<q;i++)
-    cout<<rslt[i]<<endl;
+    Graph<test> g(6, e);
+    auto q=g.bfs_queue();
+    while(!q.empty())
+    {
+        cout<<q.front()<<endl;
 
+        q.pop();
+    }
     return 0;
 }
 /*
